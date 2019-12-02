@@ -1,0 +1,41 @@
+{
+    "_comment": "Build an AWS EC2 and docker image for STM32 CDE",
+    "_author": "Dimitris Tassopoulos <dimtass@gmail.com>",
+    "variables": {
+      "aws_access_key": "",
+      "aws_secret_key": "",
+      "cde_version": "0.1",
+      "build_user": "stm32",
+      "docker_repo": "dimtass/stm32-cde-image"
+    },
+    "builders": [{
+      "type": "docker",
+      "image": "ubuntu:16.04",
+      "commit": true
+    }],
+    "provisioners":[
+      {
+        "type": "shell",
+        "inline": [
+            "apt-get -y update",
+            "apt-get -y install python"
+        ]
+      },
+      {
+          "type": "ansible",
+          "user": "root",
+          "playbook_file": "provisioning/setup-cde.yml",
+          "ansible_env_vars": ["build_user={{user `build_user`}}"]
+      }
+    ],
+    "post-processors": [
+      [
+        {
+          "type": "docker-tag",
+          "repository": "{{user `docker_repo`}}",
+          "tag": "{{user `cde_version`}}"
+        },
+        "docker-push"
+      ]
+    ]
+  }
