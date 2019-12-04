@@ -1,0 +1,30 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Require the AWS provider plugin
+require 'vagrant-aws'
+
+# Creating and configuring the AWS instance
+Vagrant.configure('2') do |config|
+
+    # Use dummy AWS box
+    config.vm.box = 'aws-dummy'
+
+    # Specify configuration of AWS provider
+    config.vm.provider 'aws' do |aws, override|
+        # Read AWS authentication information from environment variables
+
+        # Specify SSH keypair to use
+        aws.keypair_name = 'aws-stm32'
+
+        # Specify region, AMI ID, Instance and security group
+        aws.region = 'eu-central-1'
+        aws.ami = 'ami-07362049ac21dd92c'
+        aws.instance_type = 't2.micro'
+        aws.security_groups = ['default']
+
+        # Specify username and private key path
+        override.ssh.username = 'ubuntu'
+        override.ssh.private_key_path = '~/.ssh/vagrant-aws.pub'
+    end
+end
