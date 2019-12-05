@@ -15,27 +15,13 @@
       "source_ami": "ami-050a22b7e0cf85dd0",
       "instance_type": "t2.micro",
       "ssh_username": "ubuntu",
-      "ami_name": "stm32-cde-image-{{user `cde_version`}} {{timestamp | clean_ami_name}}"
+      "ami_name": "stm32-cde-image-{{user `cde_version`}} {{timestamp | clean_ami_name}}",
+      "ssh_interface": "public_ip"
     }],
-    "provisioners":[
-      {
-        "type": "shell",
-        "inline": [
-          "sleep 10"
-        ]
-      },
-      {
-        "type": "shell",
-        "inline": [
-            "sudo apt-get -y update",
-            "sudo apt-get -y install python"
-        ]
-      },
-      {
-          "type": "ansible",
-          "user": "ubuntu",
-          "playbook_file": "provisioning/setup-cde.yml",
-          "ansible_env_vars": ["build_user={{user `build_user`}}"]
-      }
-    ]
+    "provisioners":[{
+        "type": "ansible",
+        "user": "ubuntu",
+        "playbook_file": "provisioning/setup-cde.yml",
+        "ansible_env_vars": ["build_user={{user `build_user`}}"]
+    }]
   }

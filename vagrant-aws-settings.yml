@@ -1,0 +1,8 @@
+---
+aws_region: eu-central-1
+aws_keypair_name: *
+aws_ami_name: *
+aws_instance_type: t2.micro
+aws_security_groups: ssh-22-only
+ssh_username: ubuntu
+ssh_private_key_path: ~/.ssh/id_rsa
