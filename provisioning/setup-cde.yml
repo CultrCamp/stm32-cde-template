@@ -4,8 +4,11 @@
 - name: Prepare STM32 CDE image
   hosts: all
   remote_user: root
+  vars:
+    env_gitlab_runner: "{{ gitlab_runner|default(false) }}"
   roles:
     - stm32-builder
     - stlink
     - arm-toolchain
     - cpputest
+    - { role: gitlab-runner, when: env_gitlab_runner|bool }
