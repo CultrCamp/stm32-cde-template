@@ -1,10 +1,12 @@
 {
-    "_comment": "Build a docker image for STM32 CDE",
+    "_comment": "Build a docker image for STM32 CDE that is also a gitlab-runner",
     "_author": "Dimitris Tassopoulos <dimtass@gmail.com>",
     "variables": {
       "cde_version": "0.1",
-      "docker_repo": "dimtass/stm32-cde-image",
-      "build_user": "stm32"
+      "docker_repo": "dimtass/stm32-cde-image-gitlab-runner",
+      "build_user": "stm32",
+      "gitlab_runner": "true",
+      "gitlab_runner_token": ""
     },
     "builders": [{
       "type": "docker",
@@ -24,7 +26,9 @@
         "user": "root",
         "playbook_file": "provisioning/setup-cde.yml",
         "extra_arguments": [
-          "-e env_build_user={{user `build_user`}}"
+          "-e env_build_user={{user `build_user`}}",
+          "-e env_gitlab_runner={{user `gitlab_runner`}}",
+          "-e env_gitlab_runner_token={{user `gitlab_runner_token`}}"
         ]
       }
     ],

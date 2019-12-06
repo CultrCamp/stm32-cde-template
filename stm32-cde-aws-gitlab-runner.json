@@ -1,0 +1,33 @@
+{
+  "_comment": "Build an AWS EC2 image for STM32 CDE including a gitlab-runner",
+  "_author": "Dimitris Tassopoulos <dimtass@gmail.com>",
+  "variables": {
+    "aws_access_key": "",
+    "aws_secret_key": "",
+    "cde_version": "0.1",
+    "build_user": "stm32",
+    "gitlab_runner": "true",
+    "gitlab_runner_token": ""
+  },
+  "builders": [{
+    "type": "amazon-ebs",
+    "access_key": "{{user `aws_access_key`}}",
+    "secret_key": "{{user `aws_secret_key`}}",
+    "region": "eu-central-1",
+    "source_ami": "ami-050a22b7e0cf85dd0",
+    "instance_type": "t2.micro",
+    "ssh_username": "ubuntu",
+    "ami_name": "stm32-cde-image-{{user `cde_version`}} {{timestamp | clean_ami_name}}",
+    "ssh_interface": "public_ip"
+  }],
+  "provisioners":[{
+      "type": "ansible",
+      "user": "ubuntu",
+      "playbook_file": "provisioning/setup-cde.yml",
+      "extra_arguments": [
+        "-e env_build_user={{user `build_user`}}",
+        "-e env_gitlab_runner={{user `gitlab_runner`}}",
+        "-e env_gitlab_runner_token={{user `gitlab_runner_token`}}"
+      ]
+  }]
+}

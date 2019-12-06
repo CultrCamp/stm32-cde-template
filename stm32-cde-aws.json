@@ -1,5 +1,5 @@
 {
-    "_comment": "Build an AWS EC2 and docker image for STM32 CDE",
+    "_comment": "Build an AWS EC2 image for STM32 CDE",
     "_author": "Dimitris Tassopoulos <dimtass@gmail.com>",
     "variables": {
       "aws_access_key": "",
@@ -22,6 +22,8 @@
         "type": "ansible",
         "user": "ubuntu",
         "playbook_file": "provisioning/setup-cde.yml",
-        "ansible_env_vars": ["build_user={{user `build_user`}}"]
+        "extra_arguments": [
+          "-e env_build_user={{user `build_user`}}"
+        ]
     }]
   }
