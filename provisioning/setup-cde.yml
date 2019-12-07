@@ -5,10 +5,10 @@
   hosts: all
   remote_user: root
   vars:
-    env_gitlab_runner: "{{ gitlab_runner|default(false) }}"
+    gitlab_runner_enabled: "{{ env_gitlab_runner|default(false) }}"
   roles:
     - stm32-builder
     - stlink
     - arm-toolchain
     - cpputest
-    - { role: gitlab-runner, when: env_gitlab_runner|bool }
+    - { role: gitlab-runner, when: gitlab_runner_enabled|bool }
