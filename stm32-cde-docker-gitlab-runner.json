@@ -6,7 +6,7 @@
       "docker_repo": "dimtass/stm32-cde-image-gitlab-runner",
       "build_user": "stm32",
       "gitlab_runner": "true",
-      "gitlab_runner_token": ""
+      "gitlab_runner_token": "d585qZxssq4JCiJJ9vjb"
     },
     "builders": [{
       "type": "docker",

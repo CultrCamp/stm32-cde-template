@@ -17,6 +17,11 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
     config.vm.provision "ansible" do |a|
         a.playbook = "provisioning/setup-cde.yml"
         a.verbose = true
+        a.raw_arguments = [
+            "-e env_build_user=stm32",
+            "-e env_gitlab_runner=true",
+            "-e env_gitlab_runner_token=d585qZxssq4JCiJJ9vjb"
+        ]
         a.groups = {
             "builders" => ["stm32-builder"],
             "multi:children" => ["builders"],
