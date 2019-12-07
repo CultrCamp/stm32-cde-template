@@ -7,7 +7,7 @@
     "cde_version": "0.1",
     "build_user": "stm32",
     "gitlab_runner": "true",
-    "gitlab_runner_token": ""
+    "gitlab_runner_token": "d585qZxssq4JCiJJ9vjb"
   },
   "builders": [{
     "type": "amazon-ebs",
@@ -17,10 +17,16 @@
     "source_ami": "ami-050a22b7e0cf85dd0",
     "instance_type": "t2.micro",
     "ssh_username": "ubuntu",
-    "ami_name": "stm32-cde-image-{{user `cde_version`}} {{timestamp | clean_ami_name}}",
+    "ami_name": "stm32-cde-image-gitlab-runner-{{user `cde_version`}} {{timestamp | clean_ami_name}}",
     "ssh_interface": "public_ip"
   }],
   "provisioners":[{
+      "type": "shell",
+      "inline": [
+        "sleep 20"
+      ]
+    },
+    {
       "type": "ansible",
       "user": "ubuntu",
       "playbook_file": "provisioning/setup-cde.yml",

@@ -1,7 +1,7 @@
 ---
 aws_region: eu-central-1
-aws_keypair_name: id_rsa_laptop_lux
-aws_ami_name: ami-04928c5fa611e89b4
+aws_keypair_name: id_rsa_2700x
+aws_ami_name: ami-0e3df02bc26b1877c
 aws_instance_type: t2.micro
 aws_security_groups: ssh-22-only
 ssh_username: ubuntu
