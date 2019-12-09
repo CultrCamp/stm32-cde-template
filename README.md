@@ -7,6 +7,7 @@ repo is part of a post series about using DevOps on embedded, that
 you can find here:
 
 [https://www.stupid-projects.com/devops-for-embedded-part-1/](https://www.stupid-projects.com/devops-for-embedded-part-1/)
+[https://www.stupid-projects.com/devops-for-embedded-part-2/](https://www.stupid-projects.com/devops-for-embedded-part-2/)
 
 > Note: for complete information details also advise the post, but
 in general this README will updated more often than the post.
@@ -51,7 +52,7 @@ packer build stm32-cde-images.json
 ```
 
 ## What now?
-Please read the post [here](https://www.stupid-projects.com/devops-for-embedded-part-1/)
+Please read these post [here](https://www.stupid-projects.com/devops-for-embedded-part-1/) and [here](https://www.stupid-projects.com/devops-for-embedded-part-2/)
 for more information.
 
 ## Author
