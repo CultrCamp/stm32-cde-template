@@ -1,8 +1,9 @@
 ---
 aws_region: eu-central-1
-aws_keypair_name: id_rsa_2700x
-aws_ami_name: ami-0e3df02bc26b1877c
+aws_keypair_name: 
+aws_ami_name: 
 aws_instance_type: t2.micro
 aws_security_groups: ssh-22-only
+aws_startup_script: register-gitlab-runner.sh
 ssh_username: ubuntu
 ssh_private_key_path: ~/.ssh/id_rsa

@@ -24,6 +24,7 @@ Vagrant.configure('2') do |config|
         aws.ami = settings['aws_ami_name']
         aws.instance_type = settings['aws_instance_type']
         aws.security_groups = settings['aws_security_groups']
+        aws.user_data = File.read(settings['aws_startup_script'])
 
         # Specify username and private key path
         override.ssh.username = settings['ssh_username']
